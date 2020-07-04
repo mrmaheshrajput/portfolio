@@ -6,12 +6,27 @@ import joblib
 from sklearn.preprocessing import StandardScaler
 from sklearn.base import BaseEstimator, TransformerMixin
 
+# Importing frequency encodings and columns names
 from .utility import red_feat_index, col_names
 
+# To add relative path
 BASE = os.path.dirname(os.path.abspath(__file__))
 
 
 class CustomScaler(BaseEstimator,TransformerMixin):
+    '''
+    This class can be used to standardize only the numerical
+    columns from a dataframe with objects and numbers.
+    Ex:
+    scaler = CustomScaler(numerical_column_names)
+    scaler.fit(dataframe)
+    normalized_dataframe = scaler.transform(dataframe)
+    'transform' method returns the entire dataframe with mean centered
+    numerical features.
+
+    You can now pickle this scaler object, so that it can be used with
+    other pipelines.
+    '''
 
     def __init__(self,columns):
         self.scaler = StandardScaler()
@@ -36,36 +51,49 @@ class ScoreModel():
 
     def __init__(self, churn_model, appetency_model, upselling_model, scaler_file,freq_file):
 
-        # with open(os.path.join(BASE,'churn'), 'rb') as churn_model, open(os.path.join(BASE,'appetency'), 'rb') as appetency_model, open(os.path.join(BASE,'upselling'), 'rb') as upselling_model, open(os.path.join(BASE,'scaler'), 'rb') as scaler_file, open(os.path.join(BASE,'freq_encodings'), 'rb') as freq_file:
+        # We load saved models with scaler object and dict that containts
+		# frequency encodings on training data
+
         with open(os.path.join(BASE,'churn'), 'rb') as churn_model, open(os.path.join(BASE,'appetency'), 'rb') as appetency_model, open(os.path.join(BASE,'upselling'), 'rb') as upselling_model, open(os.path.join(BASE,'freq_encodings'), 'rb') as freq_file:
             self.churn = pickle.load(churn_model)
             self.appetency = pickle.load(appetency_model)
             self.upselling = pickle.load(upselling_model)
-            # obj = CustomScaler(col_names)
-            # self.scaler = pickle.load(scaler_file)
             self.freq_encodings = pickle.load(freq_file)
             self.scaler = joblib.load(os.path.join(BASE, scaler_file))
             self.data = None
             self.upselling_data = None
 
-        self.scaler = joblib.load(os.path.join(BASE,'scaler'))
+        # self.scaler = joblib.load(os.path.join(BASE,'scaler'))
 
     def load_and_clean_data(self, data):
+        '''
+    	This function preprocesses the input data array of length 299.
+    	'''
+
+        # Adding missing indicators
         missing_indicator = (data == None).astype('int64')
+
+        # Removing features that had more than 30% missing values and
+        # concatenating missing indicator features
         dat = np.concatenate((np.delete(data,red_feat_index), missing_indicator),axis=0)
+
+        # Adding na count and zero count features
         dat = np.concatenate((dat,[len(np.where(dat == None)[0]), len(np.where(dat == 0)[0])]),axis=0)
         assert(len(dat) == 299)
 
+        # Converting string to frequency encodings
         pro_data = np.array([np.where(type(i)==str, self.freq_encodings.get(i),i).ravel()[0] for i in dat]).astype('float')
 
+        # Converting to dataframe for standardization
         df=pd.DataFrame(pro_data.reshape(1,-1), columns=col_names)
 
+        # Using scaler object to transform numerical columns
         scaled_inputs = self.scaler.transform(df.iloc[:,:39])[0]
         for i,col in enumerate(df.iloc[:,:39].columns.values):
             df[col] = scaled_inputs[i]
-#         ok_df = self.scaler.transform(df)
         assert(df.shape[1] == 299)
 
+        # Reordering columns names
         df = df[self.churn.get_booster().feature_names]
         up_df = df[self.upselling.get_booster().feature_names]
 
@@ -73,6 +101,11 @@ class ScoreModel():
         self.upselling_data = up_df
 
     def predict(self):
+        '''
+    	If data is processed this function will return class predictions
+    	as -1 or +1 and probability arrays of length 2, for three
+    	target variables - churn, appetency and upselling
+    	'''
 
         if self.data is not None:
             churn_prob = self.churn.predict_proba(self.data)[0]

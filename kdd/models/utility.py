@@ -1,5 +1,9 @@
 import numpy as np
 
+
+# red_feat_index refers to redundant features index, the features
+# that were removed because percentage of missing values was
+# greater than the threshold
 red_feat_index = np.array([0,1,2,3,4,7,8,9,10,11,13,14,15,16,17,18,19,22,25,26,28,29,30,31,32,33,35,36,38,39,40,
                   41,42,44,45,46,47,48,49,50,51,52,53,54,55,57,58,59,60,61,62,63,65,66,67,68,69,70,71,74,
                   76,78,79,81,83,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,
@@ -8,6 +12,9 @@ red_feat_index = np.array([0,1,2,3,4,7,8,9,10,11,13,14,15,16,17,18,19,22,25,26,2
                   168,169,170,171,173,174,175,176,177,178,179,181,182,183,184,185,186,187,188,189,190,193,
                   199,200,208,212,213,214,223,224,228,229])
 
+
+# col_names refers to column names, the exact order of columns
+# after preprocessing, as per in jupyter notebook
 col_names = np.array(['Var6', 'Var7', 'Var13', 'Var21', 'Var22', 'Var24', 'Var25',
        'Var28', 'Var35', 'Var38', 'Var44', 'Var57', 'Var65', 'Var73',
        'Var74', 'Var76', 'Var78', 'Var81', 'Var83', 'Var85', 'Var109',

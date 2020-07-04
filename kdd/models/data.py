@@ -1,5 +1,13 @@
 import numpy as np
 
+# This file contains few samples from original data file
+# we worked on for this problem. These samples have not
+# been modified and any number of samples can be
+# appended to the dictionary as long as length of the
+# array is 299.
+# Prediction is done by randomly picking any one of the
+# sample from data_dict.
+
 data_dict = {1:np.array([None, None, None, None, None, 1526.0, 7.0, None, None, None, None, None,
     184.0, None, None, None, None, None, None, None, 464.0, 580.0, None, 14.0,
     128.0, None, None, 166.56, None, None, None, None, None, None, 0.0, None,
