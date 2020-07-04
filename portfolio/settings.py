@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'venv.eba-vetpszpj.us-west-2.elasticbeanstalk.com'
+    'venv.eba-vetpszpj.us-west-2.elasticbeanstalk.com',
+    'portfolio-mr.herokuapp.com',
 ]
 
 
@@ -129,3 +131,6 @@ STATIC_ROOT = 'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
 ]
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
