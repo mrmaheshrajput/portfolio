@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dashboard',
     'kdd',
+    # 'news',
 ]
 
 MIDDLEWARE = [
@@ -126,11 +128,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'static'
-# STATIC_ROOT = os.path.join(BASE_DIR,"..","www", "static")
+# STATIC_ROOT = 'static'
+STATIC_ROOT = os.path.join(BASE_DIR,"..","www", "staticfiles")
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles"),
+    os.path.join(BASE_DIR, "static"),
 ]
 
 # Activate Django-Heroku.

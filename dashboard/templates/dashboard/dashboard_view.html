@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Ethereal by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Machine Learning Projects Portfolio - Mahesh Rajput</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'dashboard/assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Wrapper -->
+					<div id="wrapper">
+
+						<!-- Panel (Banner) -->
+							<section class="panel banner right">
+								<div class="content color0 span-3-75">
+									<h1 class="major">Hello, my name<br />
+									is Mahesh</h1>
+									<p>This is my <strong>machine learning</strong>, portfolio. Feel free to browse any project demo or its realted source code on github/kaggle :)</p>
+									<ul class="actions">
+										<li><a href="#first" class="button primary color1 circle icon solid fa-angle-right">Next</a></li>
+									</ul>
+									<!-- <a href="">Kdd</a>
+									<a href="">News</a>
+									<a href="https://www.kaggle.com/shumbho/preprocessing-and-information-extraction-naukri" target="_blank">Naukri Jobs Analysis</a> -->
+								</div>
+								<div class="image filtered span-1-75" data-position="25% 25%">
+									<img src="https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=376&q=80" alt="" />
+								</div>
+							</section>
+
+						<!-- Panel (Spotlight) -->
+							<section class="panel spotlight medium right" id="first">
+								<div class="content span-7">
+									<h2 class="major">Knowing Customer Through Machine Learning</h2>
+									<p>If we can predict a score that allows us to project, on a given population, quantifiable information so that it can be used by the information system (IS) to personalize the customer relationship.</p>
+									<ul class="actions">
+										<li><a href="{% url 'kdd:kdd_home_view' %}" class="button primary color2">Deployed Model</a></li>
+										<li><a href="https://github.com/mrmaheshrajput/kdd2009" target="_blank" class="button">Notebook</a></li>
+									</ul>
+								</div>
+								<div class="image filtered tinted" data-position="top left">
+									<img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" style="filter: blur(5px);-webkit-filter: blur(5px);"/>
+								</div>
+							</section>
+
+
+						<!-- Panel (Spotlight) -->
+							<section class="panel spotlight medium left color1">
+								<div class="content span-8">
+									<h2 class="major">Busting fake news with Logistic Regression</h2>
+									<p>Digital news has brought back and increased the usage of fake news, or yellow journalism. Often times this fake news creates panic, damages reputation of public and private entities or misleads people to benefit fraudsters. Using classical machine learning we try to distinguish between real and fake news.</p>
+									<ul class="actions">
+										<li><a href="https://www.youtube.com/embed/OxtqFZN59RE" target="_blank" class="button primary color2">Deployed Model</a></li>
+										<li><a href="https://www.kaggle.com/shumbho/news-buster-logistic-regression" target="_blank" class="button">Notebook</a></li>
+									</ul>
+								</div>
+								<div class="image filtered tinted" data-position="top right">
+									<img src="https://images.unsplash.com/photo-1564475470622-91237acb86be?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=699&q=80" alt="" style="filter: blur(5px);-webkit-filter: blur(5px);"/>
+								</div>
+							</section>
+
+						<!-- Panel (Spotlight) -->
+							<section class="panel spotlight medium right">
+								<div class="content span-8">
+									<h2 class="major">Analysing Naukri.com naukris</h2>
+									<p>Jobs Dataset available on Naukri.com, was created by PromptCloud and DataStock. The dataset was created for the main purpose of analysis and detailed explanation of the dataset. We did a detailed study of the task at hand and analyzed the same by answering various questions.</p>
+									<a href="https://www.kaggle.com/shumbho/preprocessing-and-information-extraction-naukri" target="_blank" class="button">Notebook</a>
+								</div>
+								<div class="image filtered tinted" data-position="top right">
+									<img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="" style="filter: blur(5px);-webkit-filter: blur(5px);"/>
+								</div>
+							</section>
+
+						<!-- Panel -->
+							<section class="panel color4-alt">
+								<div class="intro color4">
+									<h2 class="major">Contact</h2>
+									<p>Currently actively looking for Machine Learning and Deep Learning based roles in Gurgaon and Delhi.</p>
+								</div>
+								<div class="inner columns divided">
+									<div class="span-1-5">
+										<ul class="contact-icons color1">
+											<li class="icon brands fa-linkedin-in"><a href="https://www.linkedin.com/in/maheshrajput/">in/maheshrajput</a></li>
+											<li class="icon brands fa-github"><a href="https://github.com/mrmaheshrajput/">@mrmaheshrajput</a></li>
+											<li class="icon brands fa-medium-m"><a href="https://medium.com/@mrmaheshrajput/">@mrmaheshrajput</a></li>
+											<li class="icon brands fa-desktop"><a href="https://www.kaggle.com/shumbho/">@shumbho</a></li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+						<!-- Copyright -->
+							<div class="copyright">Template Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a>. Background Images from <a href="https://unsplash.com/" target="_blank">Unsplash</a></div>
+
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'dashboard/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'dashboard/assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'dashboard/assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'dashboard/assets/js/main.js' %}"></script>
+
+	</body>
+</html>

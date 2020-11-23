@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Fake News Buster : Machine Learning Project by Mahesh Rajput</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'news/assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'news/assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+				<!-- One -->
+					<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+						<div class="content">
+							<h2>Check for fake news</h2>
+							<p>Model built on Logistic Regression 😎</p>
+
+							{% if output.prediction == 1 %}
+							<p>News seems to be <img width="40px" src="https://image.flaticon.com/icons/svg/1483/1483341.svg" alt="fake"/> (Probability: {{ output.prob.1|floatformat:2 }})</p>
+							{% elif output.prediction == 0 %}
+							<p>Genuine news <img width="40px" src="https://image.flaticon.com/icons/svg/3174/3174842.svg" alt=""/> (Probability: {{ output.prob.0|floatformat:2 }})</p>
+							{% endif %}
+
+							<form method="POST" action="{% url 'news:news_home_view' %}">{% csrf_token %}
+								<div class="fields">
+									<div class="field">
+										<label for="message">Paste news article below... (just a title may not work)</label>
+										<textarea required name="news_input" id="message" rows="4">{% if query %}{{query}}{%endif%}</textarea>
+									</div>
+								</div>
+
+								<ul class="actions">
+									<li><input type="submit" name="submit" id="submit" value="Submit"></li>
+								</ul>
+							</form>
+
+						</div>
+						<div class="image">
+							{% if not output %}
+							<iframe width="100%" height="100%" src="https://www.youtube.com/embed/3VycpUTeYto?autoplay=1&loop=1&controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							{% elif output.prediction == 1 %}
+							<img src="https://images.unsplash.com/photo-1521716250348-c4ae4ff1df43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1482&q=80" />
+							{% else %}
+							<img src="https://images.unsplash.com/photo-1523586797235-580376c5d862?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1577&q=80" />
+							{% endif %}
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer class="wrapper style1 align-center">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="https://github.com/mrmaheshrajput/" target="_blank" class="icon brands style1 fa-github"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.linkedin.com/in/maheshrajput/" target="_blank" class="icon brands style1 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+							</ul>
+							<p>Check out behind the scenes of this project on <a href="https://www.kaggle.com/shumbho/news-buster-logistic-regression" target="_blank">kaggle here</a></p>
+							<p>Template Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a>. Background Images from <a href="https://unsplash.com/s/photos/fake-news" target="_blank">Unsplash</a></p>
+							<p><a class="button primary fit small icon solid fa-arrow-left" href="../">Back to projects</a></p>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script>
+
+				document.getElementById('submit').addEventListener('click', pleaseWait);
+
+				function pleaseWait() {
+					if (document.getElementById('message').value != "") {
+				 document.getElementById('submit').value = 'Please wait...';
+				 document.getElementById('submit').disabled = true;
+				 }
+			 };
+
+			</script>
+			<script src="{% static 'news/assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'news/assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'news/assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'news/assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'news/assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'news/assets/js/util.js' %}"></script>
+			<script src="{% static 'news/assets/js/main.js' %}"></script>
+
+	</body>
+</html>

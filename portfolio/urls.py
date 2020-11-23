@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('',include('kdd.urls')),
+    path('',include('dashboard.urls')),
+    path('kdd/',include('kdd.urls')),
+    # path('news/',include('news.urls')),
     path('add/', admin.site.urls),
 ]
