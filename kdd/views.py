@@ -9,8 +9,8 @@ from django.urls import reverse
 from .models.data import data_dict
 from .models.main import ScoreModel, CustomScaler
 
-class DashboardView(View):
-    template_name               = 'kdd/dashboard_view.html'
+class KddHomeView(View):
+    template_name               = 'kdd/kdd_home_view.html'
 
     def get(self, request):
         return render(request, self.template_name)

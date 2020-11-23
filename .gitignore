@@ -1,3 +1,6 @@
+# Removed Apps or Files
+news/models/vectorizer
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
