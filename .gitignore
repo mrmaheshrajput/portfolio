@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 # Static Files
 staticfiles/*
 !staticfiles/.gitkeep
 
+=======
+>>>>>>> b011c09b1a819306c570985da5b10b65b370a792
 # Removed Apps or Files
 news/models/vectorizer
 
